@@ -12,8 +12,11 @@ jobs:
       - name: setup-cocoapods
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
-          version: latest
+          version: latest  
       - run: npm ci --legacy-peer-deps
+      - run: npm install detox-cli --global
+      - run: brew tap wix/brew
+      - run: brew install applesimutils
       # - run: cd ios && pod install
       - run: npx react-native start --sourceExts mock.js,js,json,ts,tsx &
       - run: detox test --configuration ios.sim.debug
