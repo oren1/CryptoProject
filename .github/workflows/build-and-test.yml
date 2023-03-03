@@ -12,7 +12,7 @@ jobs:
       - name: setup-cocoapods
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
-          podfile-path: latest
+          version: latest
       - run: npm install
       - run: cd ios && pod install
       - run: npm test
