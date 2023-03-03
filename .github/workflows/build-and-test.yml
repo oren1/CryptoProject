@@ -13,6 +13,6 @@ jobs:
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
           version: latest
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       - run: cd ios && pod install
       - run: npm test
