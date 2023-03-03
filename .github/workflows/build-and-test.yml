@@ -13,7 +13,7 @@ jobs:
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
           version: latest
-      - run: npm ci
+      - run: npm ci --legacy-peer-deps
       - run: cd ios && pod install
       - run: npx react-native start --sourceExts mock.js,js,json,ts,tsx
       - run: detox test --configuration ios.sim.debug
