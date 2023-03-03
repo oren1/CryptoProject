@@ -17,7 +17,7 @@ jobs:
       - run: npm install detox-cli --global
       - run: brew tap wix/brew
       - run: brew install applesimutils
-      # - run: cd ios && pod install
+      - run: cd ios && pod install
       - run: npx react-native start --sourceExts mock.js,js,json,ts,tsx &
       - run: detox test --configuration ios.sim.debug
 
