@@ -32,6 +32,7 @@ const CoinsList = observer(({navigation}: TopListScreenNavigationProp) => {
   const renderItem = ({item, index}: {item: Coin; index: number}) => {
     return (
       <CoinRow
+        testID={`CoinRow.${index + 1}`}
         onPress={showDetails(index)}
         coinName={item.coinName}
         imageUrl={item.imageUrl}
@@ -40,7 +41,7 @@ const CoinsList = observer(({navigation}: TopListScreenNavigationProp) => {
   };
 
   return (
-    <SafeAreaView
+    <SafeAreaView testID={'CoinList'}
       edges={['bottom']}
       style={{flex: 1, backgroundColor: 'white'}}>
       {store.coinsStore.isCoinListLoading && store.coinsStore.page === 0 ? (

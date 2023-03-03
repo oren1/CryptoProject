@@ -9,7 +9,7 @@ type GetHistoryCallback = (
 ) => void;
 
 export const client = new ApolloClient({
-  uri: 'http://localhost:4000/',
+  uri: 'https://5142s291u6.execute-api.us-east-1.amazonaws.com/',
   cache: new InMemoryCache(),
 });
 

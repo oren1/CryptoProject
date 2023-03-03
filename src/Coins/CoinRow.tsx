@@ -3,15 +3,16 @@ import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 interface CoinRowProp {
+  testID: string
   coinName: string;
   imageUrl: string;
   onPress: () => void;
 }
 
-const CoinRow = ({onPress, coinName, imageUrl}: CoinRowProp) => {
+const CoinRow = ({onPress, coinName, imageUrl, testID}: CoinRowProp) => {
   const CoinView = () => {
     return (
-      <View style={styles.coinRowContainer}>
+      <View testID={testID} style={styles.coinRowContainer}>
         <FastImage source={{uri: imageUrl}} style={{width: 75, height: 75}} />
 
         <Text style={styles.titleText}>{coinName}</Text>

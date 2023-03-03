@@ -35,11 +35,14 @@ const CoinDetail = ({route}: CoinDetailScreenNavigationProp) => {
   }, [getHistory, symbol]);
 
   return (
-    <View style={styles.container}>
+    <View
+    testID={'CoinDetail'}
+    style={styles.container}>
       {loading ? (
         <ActivityIndicator style={styles.activityIndicator} size="small" />
       ) : (
         <LineChart
+          testID={'LineChart'}
           style={styles.chart}
           chartDescription={{text: ''}}
           data={{
