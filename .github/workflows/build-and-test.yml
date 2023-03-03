@@ -15,8 +15,8 @@ jobs:
           version: latest
       - run: npm ci --legacy-peer-deps
       # - run: cd ios && pod install
-    - shell: bash
-        run: npx react-native start --sourceExts mock.js,js,json,ts,tsx
+      - shell: bash
+          run: npx react-native start --sourceExts mock.js,js,json,ts,tsx
       # - run: npx react-native start --sourceExts mock.js,js,json,ts,tsx
       - run: detox test --configuration ios.sim.debug
 
