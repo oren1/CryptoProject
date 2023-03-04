@@ -21,6 +21,7 @@ jobs:
       - run: npm install detox --save-dev --legacy-peer-deps
       - run: cd ios && pod install
       - run: npx react-native start --sourceExts mock.js,js,json,ts,tsx &
+      - run: detox build --configuration ios.sim.debug
       - run: detox test --configuration ios.sim.debug
 
 
