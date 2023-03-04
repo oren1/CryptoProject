@@ -12,16 +12,38 @@ jobs:
       - name: setup-cocoapods
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
-          version: latest  
+          version: latest
+      - name: Cache CocoaPods
+        id: cache-cocoapods
+        uses: actions/cache@v3
+        with:
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-  
+            
       - run: npm ci --legacy-peer-deps
       - run: npm install detox-cli --global
       - run: brew tap wix/brew
       - run: brew install applesimutils
       - run: npm install "jest@^29" --save-dev --legacy-peer-deps
       - run: npm install detox --save-dev --legacy-peer-deps
-      - run: cd ios && pod install
+      
+      - name: install pods
+        if: steps.cache-primes.outputs.cache-hit != 'true'
+        run: cd ios && pod install && cd ../
+        
+      - name: Cache Detox build
+        id: cache-detox-build
+        uses: actions/cache@v3
+        with:
+          path: ios/build
+          key: ${{ runner.os }}-detox-build
+          restore-keys: |
+            ${{ runner.os }}-detox-build
+            
       - run: npx react-native start --sourceExts mock.js,js,json,ts,tsx &
-      - run: detox build --configuration ios.sim.debug
+      - run: detox build --configuration ios.sim.release
       - run: detox test --configuration ios.sim.debug
 
 
